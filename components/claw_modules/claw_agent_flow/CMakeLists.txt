@@ -1,0 +1,16 @@
+idf_component_register(
+    SRCS
+        "src/claw_agent_flow.c"
+        "src/claw_agent_state_machine.c"
+        "src/claw_agent_tool_orchestrator.c"
+        "src/claw_agent_context_pipeline.c"
+    INCLUDE_DIRS
+        "include"
+    REQUIRES
+        claw_core
+        claw_cap
+        claw_event_router
+        json
+        freertos
+        esp_common
+)

@@ -1,0 +1,45 @@
+menu "Claw Agent Flow"
+
+    config APP_CLAW_AGENT_FLOW_ENABLED
+        bool "Enable Agent Flow architecture"
+        default n
+        help
+            Enable the new Agent Flow query-loop architecture inspired by
+            Claude Code's agent architecture.
+
+    config APP_CLAW_AGENT_FLOW_STACK_SIZE
+        int "Agent Flow task stack size"
+        depends on APP_CLAW_AGENT_FLOW_ENABLED
+        default 16384
+        help
+            Stack size for the agent flow worker task.
+
+    config APP_CLAW_AGENT_FLOW_PRIORITY
+        int "Agent Flow task priority"
+        depends on APP_CLAW_AGENT_FLOW_ENABLED
+        default 5
+        help
+            FreeRTOS priority for the agent flow worker task.
+
+    config APP_CLAW_AGENT_FLOW_MAX_TURNS
+        int "Max turns per request"
+        depends on APP_CLAW_AGENT_FLOW_ENABLED
+        default 32
+        help
+            Maximum number of LLM round-trips (tool call loops) per request.
+
+    config APP_CLAW_AGENT_FLOW_TOKEN_BUDGET
+        int "Token budget"
+        depends on APP_CLAW_AGENT_FLOW_ENABLED
+        default 8000
+        help
+            Token budget for context assembly.
+
+    config APP_CLAW_AGENT_FLOW_COMPACT_THRESHOLD
+        int "Compact threshold"
+        depends on APP_CLAW_AGENT_FLOW_ENABLED
+        default 7000
+        help
+            Token threshold to trigger context compaction.
+
+endmenu
